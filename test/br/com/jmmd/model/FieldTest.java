@@ -1,12 +1,10 @@
-package model;
+package br.com.jmmd.model;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import br.com.jmmd.model.Field;
 
 public class FieldTest {
 	private Field field;
@@ -90,5 +88,36 @@ public class FieldTest {
 	    assertFalse(result);
 	}
 	
+	@Test
+	void VerifyOpenWithNeigbors() {
+		
+		Field field11 = new Field(1, 1);
+		Field field22 = new Field(2,2);
+		
+		field22.AddNeighbor(field11);
+		
+		field.AddNeighbor(field22);
+		field.open();
+		
+		assertTrue(field22.isOpen() && field11.isOpen());
+	}
+	
+	@Test
+	void VerifyOpenWithNeigbors2() {
+		
+		Field field11 = new Field(1, 1);
+		Field field12 = new Field(1,1);
+		field12.mined();
+		
+		Field field22 = new Field(2, 2);
+		
+		field22.AddNeighbor(field11);
+		field22.AddNeighbor(field12);
+		
+		field.AddNeighbor(field22);
+		field.open();
+		
+		assertTrue(field22.isOpen() && field11.isClosed());
+	}
 	
 }
