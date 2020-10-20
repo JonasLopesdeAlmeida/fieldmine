@@ -66,7 +66,7 @@ public class Field {
 
 			if (mined) {
 
-				throw new ExplosionException();
+				throw new ExplosionException("Game Over!!");
 
 			}
 			if (safeNeighborhood()) {
